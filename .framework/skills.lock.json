@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "skills": {
+    "package:framework-workflow": {
+      "paths": [
+        ".agents/skills/framework-workflow"
+      ],
+      "variant": "python",
+      "hash": "99a7468e83b88221e263caa2c65c6b160790cfa6b59701b43d9922b16c7a498b",
+      "origin": {
+        "skill_id": "framework:framework-workflow",
+        "hash": "99a7468e83b88221e263caa2c65c6b160790cfa6b59701b43d9922b16c7a498b"
+      }
+    },
+    "package:framework-data": {
+      "paths": [
+        ".agents/skills/framework-data"
+      ],
+      "variant": "python",
+      "hash": "f023459703635800f30e11b45921265326afd97b993faea815353fd4f6697857",
+      "origin": {
+        "skill_id": "framework:framework-data",
+        "hash": "f023459703635800f30e11b45921265326afd97b993faea815353fd4f6697857"
+      }
+    },
+    "package:framework-packages": {
+      "paths": [
+        ".agents/skills/framework-packages"
+      ],
+      "variant": "python",
+      "hash": "27e2ed40bce7f22b668d355e8aab0f28b188bfa60e3a3ad5d11d1b5991af7ae4",
+      "origin": {
+        "skill_id": "framework:framework-packages",
+        "hash": "27e2ed40bce7f22b668d355e8aab0f28b188bfa60e3a3ad5d11d1b5991af7ae4"
+      }
+    },
+    "package:framework-outputs": {
+      "paths": [
+        ".agents/skills/framework-outputs"
+      ],
+      "variant": "python",
+      "hash": "a3a0edd5f9fd08e80330dcb899239f66d339fbb4e01c9383316260ed8fb89df5",
+      "origin": {
+        "skill_id": "framework:framework-outputs",
+        "hash": "a3a0edd5f9fd08e80330dcb899239f66d339fbb4e01c9383316260ed8fb89df5"
+      }
+    },
+    "package:framework-sensitive-data": {
+      "paths": [
+        ".agents/skills/framework-sensitive-data"
+      ],
+      "variant": "python",
+      "hash": "797b41e5e836815a021690835440d80b85b01a01deeaf0bf0fa0c03a88943d58",
+      "origin": {
+        "skill_id": "framework:framework-sensitive-data",
+        "hash": "797b41e5e836815a021690835440d80b85b01a01deeaf0bf0fa0c03a88943d58"
+      }
+    },
+    "account:https://framework.pub:framework:matplotlib-figures:python": {
+      "paths": [
+        ".agents/skills/matplotlib-figures"
+      ],
+      "variant": "python",
+      "hash": "5d1d87525520db3a8976a48f0ebaa925d16327131923e39221c5a27398bc43c4",
+      "server": "https://framework.pub",
+      "version": 2,
+      "skill_id": "framework:matplotlib-figures"
+    },
+    "account:https://framework.pub:framework:writing:python": {
+      "paths": [
+        ".agents/skills/writing"
+      ],
+      "variant": "python",
+      "hash": "221f7654be8309f0020f90a81eda7f76fcadb34448c33201ff3cfa71f9f6250f",
+      "server": "https://framework.pub",
+      "version": 5,
+      "skill_id": "framework:writing"
+    },
+    "account:https://framework.pub:framework:git-workflow:python": {
+      "paths": [
+        ".agents/skills/git-workflow"
+      ],
+      "variant": "python",
+      "hash": "cdbce1802bc49454803c0c9b2828d7bd3ff7c60e6f19c23f3954417ede300a81",
+      "server": "https://framework.pub",
+      "version": 2,
+      "skill_id": "framework:git-workflow"
+    },
+    "account:https://framework.pub:framework:jupyter-notebooks:python": {
+      "paths": [
+        ".agents/skills/jupyter-notebooks"
+      ],
+      "variant": "python",
+      "hash": "56bc42c6fe91d337936cb57c4cba32315bab3a064659f4e751bfb07098b4db75",
+      "server": "https://framework.pub",
+      "version": 2,
+      "skill_id": "framework:jupyter-notebooks"
+    }
+  }
+}

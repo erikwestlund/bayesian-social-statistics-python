@@ -1,0 +1,8 @@
+scaffold:
+  seed_on_scaffold: true
+  seed: '123'
+  source_all_functions: true
+  set_theme_on_scaffold: false
+  matplotlib_style: seaborn-v0_8-whitegrid
+  workflow: jupyter
+  notebook_format: jupyter

@@ -1,0 +1,17 @@
+[project]
+name = "bayesian-social-statistics-python"
+version = "0.1.0"
+description = "bayesian-social-statistics-python"
+requires-python = ">=3.11"
+dependencies = [
+    "framework-py",
+    "seaborn",
+    "matplotlib",
+    "ipykernel",
+    "nbformat",
+    "nbclient",
+    "jupyterlab",
+]
+
+[tool.uv]
+package = false
