@@ -1,0 +1,363 @@
+{
+    "name": "bayesian-social-statistics-python",
+    "spec_version": 1,
+    "author": {
+        "name": "Erik",
+        "email": "ewestlund@jhu.edu",
+        "affiliation": "Johns Hopkins Bloomberg School of Public Health",
+        "url": "https://erik-westlund.academic.page",
+        "affiliations": [
+            {
+                "city": "Baltimore",
+                "name": "Johns Hopkins Bloomberg School of Public Health",
+                "country": "United States",
+                "department": "Department of Biostatistics"
+            }
+        ]
+    },
+    "layers": [
+        {
+            "kind": "base",
+            "key": "framework/project_sensitive",
+            "version": 5,
+            "layer": {
+                "git": {
+                    "gitignore_content": "# Private data and credentials\n**/private/**\n**/*_private/**\n.env\n.env.*\n!.env.example\n.Renviron\n**/credentials/**\n**/secrets/**\n\n# Local records and caches\nframework.db\nframework.db-wal\nframework.db-shm\n.DS_Store\n\n# Sensitive project folders\n/inputs/private/\n/reference/private/\n/outputs/private/\n**/sensitive/**\n\n# Run logs\n/logs/\n"
+                },
+                "type": "project_sensitive",
+                "quarto": {
+                    "render_dir": "outputs/public/docs"
+                },
+                "security": {
+                    "sensitive": true
+                },
+                "directories": {
+                    "docs": "docs",
+                    "logs": "logs",
+                    "cache": "outputs/private/cache",
+                    "scratch": "scratch",
+                    "scripts": "scripts",
+                    "functions": "functions",
+                    "notebooks": "notebooks",
+                    "inputs_public_raw": "inputs/public/raw",
+                    "inputs_private_raw": "inputs/private/raw",
+                    "inputs_public_final": "inputs/public/final",
+                    "inputs_private_final": "inputs/private/final",
+                    "outputs_public_models": "outputs/public/models",
+                    "outputs_public_tables": "outputs/public/tables",
+                    "outputs_private_models": "outputs/private/models",
+                    "outputs_private_tables": "outputs/private/tables",
+                    "outputs_public_figures": "outputs/public/figures",
+                    "outputs_public_reports": "outputs/public/reports",
+                    "outputs_private_figures": "outputs/private/figures",
+                    "outputs_private_reports": "outputs/private/reports",
+                    "inputs_public_intermediate": "inputs/public/intermediate",
+                    "inputs_private_intermediate": "inputs/private/intermediate"
+                },
+                "render_dirs": {
+                    "docs": "outputs/private/docs",
+                    "notebooks": "outputs/private/notebooks"
+                },
+                "settings_layout": "split"
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/uv",
+            "version": 1,
+            "layer": {
+                "tools": {
+                    "uv": true
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/framework",
+            "version": 2,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/framework-python",
+            "version": 2,
+            "layer": {
+                "skills": {
+                    "framework-data": {
+                        "package": true
+                    },
+                    "framework-outputs": {
+                        "package": true
+                    },
+                    "framework-packages": {
+                        "package": true
+                    },
+                    "framework-workflow": {
+                        "package": true
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/visualization",
+            "version": 4,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/visualization-python",
+            "version": 4,
+            "layer": {
+                "skills": {
+                    "matplotlib-figures": {
+                        "sync": {
+                            "hash": "5d1d87525520db3a8976a48f0ebaa925d16327131923e39221c5a27398bc43c4",
+                            "server": "https://framework.pub",
+                            "variant": "python",
+                            "version": 2,
+                            "skill_id": "framework:matplotlib-figures"
+                        },
+                        "bundle": [
+                            {
+                                "path": "SKILL.md",
+                                "content": "LS0tCm5hbWU6IG1hdHBsb3RsaWItZmlndXJlcwpkZXNjcmlwdGlvbjogVXNlIHdoZW4gbWFraW5nIGEgbWF0cGxvdGxpYiBvciBzZWFib3JuIGZpZ3VyZSBpbiBQeXRob24sIGZyb20gYSBxdWljayBsb29rIGF0IHRoZSBkYXRhIHRvIGEgZmlndXJlIGZvciBhIHBhcGVyLCByZXBvcnQsIHBvc3Rlciwgb3Igc2xpZGVzLiBDb3ZlcnMgY2hvb3NpbmcgdGhlIGNoYXJ0LCBhY2N1cmF0ZSBkZWZhdWx0cywgdGl0bGVzIGFuZCBsYWJlbHMsIGFjY2Vzc2libGUgY29sb3IsIGhvbmVzdCBzY2FsZXMsIHN0eWxlcywgYW5kIHNhdmluZy4KbWV0YWRhdGE6CiAgdGl0bGU6IEZpZ3VyZXMgd2l0aCBtYXRwbG90bGliCiAgc3VtbWFyeTogQWNjdXJhdGUgbWF0cGxvdGxpYiBhbmQgc2VhYm9ybiBmaWd1cmVzLCBmcm9tIGV4cGxvcmluZyBkYXRhIHRvIHB1YmxpY2F0aW9uLgotLS0KCiMgRmlndXJlcyB3aXRoIG1hdHBsb3RsaWIKCiMjIENoYXJ0IGNob2ljZQoKVmFsdWVzIG9uIGEgc2hhcmVkIGF4aXMgYXJlIHRoZSBlYXNpZXN0IHRvIGNvbXBhcmUuCgp8IFF1ZXN0aW9uIHwgQ2hhcnQgfCBzZWFib3JuIG9yIG1hdHBsb3RsaWIgfAp8LS0tfC0tLXwtLS18CnwgRGlzdHJpYnV0aW9uIG9mIG9uZSBudW1lcmljIHZhcmlhYmxlIHwgSGlzdG9ncmFtIHwgYHNucy5oaXN0cGxvdCgpYCB8CnwgQSBudW1lcmljIHZhcmlhYmxlIGFjcm9zcyBncm91cHMgfCBCb3ggcGxvdCB3aXRoIHRoZSBwb2ludHMgfCBgc25zLmJveHBsb3QoKWAsIGBzbnMuc3RyaXBwbG90KClgIHwKfCBDb3VudHMgYnkgY2F0ZWdvcnkgfCBCYXIgY2hhcnQsIHNvcnRlZCB8IGBzbnMuY291bnRwbG90KClgLCBgYXguYmFyaCgpYCB8CnwgVHdvIG51bWVyaWMgdmFyaWFibGVzIHwgU2NhdHRlcnBsb3QgfCBgc25zLnNjYXR0ZXJwbG90KClgLCBgc25zLnJlZ3Bsb3QoKWAgfAp8IENoYW5nZSBvdmVyIHRpbWUgb3IgYW5vdGhlciBvcmRlcmVkIHZhcmlhYmxlIHwgTGluZSBjaGFydCB8IGBzbnMubGluZXBsb3QoKWAgfAp8IEEgcGF0dGVybiBhY3Jvc3Mgc3ViZ3JvdXBzIHwgU21hbGwgbXVsdGlwbGVzIHwgYHNucy5yZWxwbG90KGNvbD0uLi4pYCwgYHNucy5jYXRwbG90KGNvbD0uLi4pYCB8CgpBdm9pZCBkdWFsIHkgYXhlcyBhbmQgMy1EIGVmZmVjdHMuIEluIGEgc3RhY2tlZCBiYXIsIG9ubHkgdGhlIGJvdHRvbSBzZWdtZW50CnNpdHMgb24gYSBzaGFyZWQgYmFzZWxpbmUuCgojIyBBY2N1cmFjeQoKLSAqKkhpc3RvZ3JhbXM6KiogdHJ5IG1vcmUgdGhhbiBvbmUgYmluIHdpZHRoLiBTZXQgYGJpbndpZHRoYCBpbiB0aGUgdW5pdHMgb2YKICB0aGUgdmFyaWFibGUuCi0gKipHcm91cCBzdW1tYXJpZXM6KiogYSBib3ggcGxvdCBoaWRlcyBncm91cCBzaXplIGFuZCBtdWx0aXBsZSBwZWFrcy4gV2l0aCBhCiAgZmV3IGh1bmRyZWQgcG9pbnRzIG9yIGZld2VyLCBvdmVybGF5IHRoZW0gd2l0aAogIGBzbnMuc3RyaXBwbG90KC4uLiwgYWxwaGE9MC4zKWAuCi0gKipPdmVycGxvdHRpbmc6KiogbG93ZXIgYGFscGhhYCwgdXNlIHNtYWxsZXIgbWFya2Vycywgb3IgcGFzcyBib3RoIGB4YCBhbmQKICBgeWAgdG8gYHNucy5oaXN0cGxvdCgpYCBmb3IgYSAyLUQgaGlzdG9ncmFtLgotICoqU2tld2VkIHZhcmlhYmxlczoqKiB1c2UgYGF4LnNldF94c2NhbGUoImxvZyIpYCBvciBgYXguc2V0X3lzY2FsZSgibG9nIilgCiAgZm9yIHN0cm9uZ2x5IHJpZ2h0LXNrZXdlZCB2YWx1ZXMuIFNheSBzbyBpbiB0aGUgYXhpcyBsYWJlbC4KLSAqKkJhcnM6KiogYSBiYXIncyBsZW5ndGggZW5jb2RlcyBpdHMgdmFsdWUsIHNvIHRoZSBheGlzIHN0YXJ0cyBhdCB6ZXJvLiBVc2UKICBwb2ludHMgd2hlbiB6ZXJvIGlzIG5vdCBtZWFuaW5nZnVsLgotICoqT3JkZXI6Kiogc29ydCBjYXRlZ29yaWVzIGJ5IHZhbHVlIHVubGVzcyB0aGV5IGhhdmUgYSBuYXR1cmFsIG9yZGVyLgotICoqTWlzc2luZy12YWx1ZSBjb2RlczoqKiBjaGVjayB0aGUgY29kZWJvb2sgZm9yIGNvZGVzIHN1Y2ggYXMgLTk5IGJlZm9yZQogIHBsb3R0aW5nLCBhbmQgcmVjb2RlIHRoZW0gdG8gbWlzc2luZy4KLSAqKk1pc3NpbmcgdmFsdWVzOioqIHNlYWJvcm4gZHJvcHMgcm93cyB3aXRoIG1pc3NpbmcgdmFsdWVzIHdpdGhvdXQgYQogIHdhcm5pbmcuIENvdW50IHRoZW0gd2l0aCBgZGZbY29sc10uaXNuYSgpLnN1bSgpYCBiZWZvcmUgeW91IHRydXN0IHRoZQogIGZpZ3VyZS4KLSAqKlBhbmVsczoqKiBwYW5lbHMgdGhhdCByZWFkZXJzIGNvbXBhcmUgc2hhcmUgYXhpcyBsaW1pdHMsIHdpdGgKICBgc2hhcmV4PVRydWVgIGFuZCBgc2hhcmV5PVRydWVgLiBGcmVlIHNjYWxlcyBzdWl0IHBhbmVscyBub3QgbWVhbnQgdG8gYmUKICBjb21wYXJlZC4gU2F5IHNvIGluIHRoZSBjYXB0aW9uLgoKIyMgVGl0bGVzIGFuZCBsYWJlbHMKCi0gKipBeGVzOioqIHVzZSBwbGFpbiBuYW1lcyB3aXRoIHVuaXRzLCBzdWNoIGFzICJJbmNvbWUgcGVyIHBlcnNvbiAoVVMKICBkb2xsYXJzLCBsb2cgc2NhbGUpIi4gUmVwbGFjZSBjb2x1bW4gbmFtZXMgc3VjaCBhcyBgc2JwX21lYW5gLgotICoqVGl0bGU6KiogYSB0aXRsZSB0aGF0IHN0YXRlcyB0aGUgZmluZGluZywgc3VjaCBhcyAiQmxvb2QgcHJlc3N1cmUgcmlzZXMKICB3aXRoIGFnZSBpbiBldmVyeSBncm91cCIsIGNhbiBoZWxwIGEgZmlndXJlIGNvbW11bmljYXRlIGl0cyByZXN1bHQuIE1ha2UKICBzdXJlIGl0IHN1aXRzIHRoZSB2ZW51ZS4gU29tZSBqb3VybmFscyBhbmQgcmVhZGVycyBwcmVmZXIgYSBtYXR0ZXItb2YtZmFjdAogIHRpdGxlIHRoYXQgbmFtZXMgdGhlIHZhcmlhYmxlcywgc3VjaCBhcyAiU3lzdG9saWMgYmxvb2QgcHJlc3N1cmUgYnkgYWdlIi4KICBGb2xsb3cgdGhlIHZlbnVlJ3Mgc3R5bGUsIGFuZCBhc2sgdGhlIHVzZXIgd2hlbiBpdCBpcyB1bmNsZWFyLiBEbyBub3QKICBpbnZlbnQgYSBmaW5kaW5nLgotICoqU3VidGl0bGUgYW5kIGNhcHRpb246Kiogc2F5IHdoYXQgaXMgbWVhc3VyZWQsIGZvciB3aG9tLCBhbmQgd2hlbi4gR2l2ZQogIHRoZSBkYXRhIHNvdXJjZSwgdGhlIHNhbXBsZSBzaXplLCBhbmQgY2F2ZWF0cyBzdWNoIGFzIHRoZSBoYW5kbGluZyBvZgogIG1pc3NpbmcgdmFsdWVzLgotICoqRGlyZWN0IGxhYmVsczoqKiB3aXRoIGEgZmV3IHNlcmllcywgbGFiZWwgbGluZXMgb3IgcG9pbnRzIGRpcmVjdGx5IHdpdGgKICBgYXguYW5ub3RhdGUoKWAgb3IgYGF4LnRleHQoKWAgYW5kIHJlbW92ZSB0aGUgbGVnZW5kLgotICoqVW5jZXJ0YWludHk6Kiogc2hvdyBpdCB3aXRoIHRoZSBzYW1lIG1ldGhvZCBhbmQgaW50ZXJ2YWwgbGV2ZWwgYXMgdGhlCiAgYW5hbHlzaXMuIExhYmVsIGEgY29uZmlkZW5jZSBpbnRlcnZhbCBhcyB1bmNlcnRhaW50eSBpbiB0aGUgZXN0aW1hdGUuCgojIyBDb2xvcgoKLSBGb3IgY2F0ZWdvcmllcywgdXNlIGEgcGFsZXR0ZSByZWFkYWJsZSB3aXRoIGNvbG9yIHZpc2lvbiBkZWZpY2llbmN5LCBzdWNoCiAgYXMgYHNucy5jb2xvcl9wYWxldHRlKCJjb2xvcmJsaW5kIilgIG9yIHZpcmlkaXMuIEZvciBvcmRlcmVkIHZhbHVlcywgdXNlCiAgdmlyaWRpcyBvciBhIHNpbmdsZS1odWUgc2VxdWVudGlhbCBwYWxldHRlLgotIFBhaXIgY29sb3Igd2l0aCBsYWJlbHMsIHBvc2l0aW9uLCBtYXJrZXIgc2hhcGUsIG9yIGxpbmUgc3R5bGUsIHNvIHRoZSBmaWd1cmUKICBzdGlsbCB3b3JrcyBpbiBncmF5c2NhbGUuCgojIyBTdHlsZXMKCkEgc2hhcmVkIHN0eWxlIGlzIGEgZ29vZCB0YWN0aWMgd2hlbiBhIHByb2plY3QgbWFrZXMgbWFueSBmaWd1cmVzLiBJdCBrZWVwcwp0aGVtIGNvbnNpc3RlbnQgYW5kIHNhdmVzIHJlcGVhdGluZyB0aGUgc2FtZSBzZXR0aW5ncy4gRGVmaW5lIGl0IG9uY2UsIGFzIGEKc3R5bGUgc2hlZXQgb3IgYSBmdW5jdGlvbiB0aGF0IHNldHMgYHJjUGFyYW1zYCwgYW5kIGFwcGx5IGl0IHRvIGVhY2ggZmlndXJlLgpJZiB0aGUgcHJvamVjdCBhbHJlYWR5IGhhcyBhIHN0eWxlLCB1c2UgaXQuIEEgb25lLW9mZiBmaWd1cmUgY2FuIHNldCBpdHMgc3R5bGUKZGlyZWN0bHkuCgojIyBTYXZpbmcKCi0gQ3JlYXRlIGZpZ3VyZXMgd2l0aCBgZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSguLi4pKWAgYW5kIHBhc3MKICBgYXg9YXhgIHRvIHNlYWJvcm4sIHNvIGVhY2ggZmlndXJlIGhhcyBhIGhhbmRsZSB0byBzYXZlLgotIFNldCB0aGUgc2l6ZSBiZWZvcmUgdHVuaW5nIHRleHQuIFRleHQgdGhhdCByZWFkcyB3ZWxsIG9uIHNjcmVlbiBjYW4gYmUgdG9vCiAgc21hbGwgYXQgY29sdW1uIHdpZHRoLgotIFByZWZlciB2ZWN0b3Igb3V0cHV0LCBzdWNoIGFzIFBERiBvciBTVkcsIGZvciBsaW5lIGFuZCB0ZXh0IGZpZ3VyZXMgd2hlbiB0aGUKICBkZXN0aW5hdGlvbiBhY2NlcHRzIGl0LiBDaGVjayB0aGUgc2F2ZWQgZmlsZSBmb3IgY2xpcHBlZCBsYWJlbHMuCi0gQ2xvc2UgZmluaXNoZWQgZmlndXJlcyB3aXRoIGBwbHQuY2xvc2UoZmlnKWAgaW4gbG9vcHMgYW5kIHNjcmlwdHMuCi0gSW4gYSBGcmFtZXdvcmsgcHJvamVjdCwgcHJlZmVyIGBmdy5zYXZlX2ZpZ3VyZShmaWcsICJuYW1lIilgLgo=",
+                                "executable": false
+                            }
+                        ],
+                        "content": "---\nname: matplotlib-figures\ndescription: Use when making a matplotlib or seaborn figure in Python, from a quick look at the data to a figure for a paper, report, poster, or slides. Covers choosing the chart, accurate defaults, titles and labels, accessible color, honest scales, styles, and saving.\nmetadata:\n  title: Figures with matplotlib\n  summary: Accurate matplotlib and seaborn figures, from exploring data to publication.\n---\n\n# Figures with matplotlib\n\n## Chart choice\n\nValues on a shared axis are the easiest to compare.\n\n| Question | Chart | seaborn or matplotlib |\n|---|---|---|\n| Distribution of one numeric variable | Histogram | `sns.histplot()` |\n| A numeric variable across groups | Box plot with the points | `sns.boxplot()`, `sns.stripplot()` |\n| Counts by category | Bar chart, sorted | `sns.countplot()`, `ax.barh()` |\n| Two numeric variables | Scatterplot | `sns.scatterplot()`, `sns.regplot()` |\n| Change over time or another ordered variable | Line chart | `sns.lineplot()` |\n| A pattern across subgroups | Small multiples | `sns.relplot(col=...)`, `sns.catplot(col=...)` |\n\nAvoid dual y axes and 3-D effects. In a stacked bar, only the bottom segment\nsits on a shared baseline.\n\n## Accuracy\n\n- **Histograms:** try more than one bin width. Set `binwidth` in the units of\n  the variable.\n- **Group summaries:** a box plot hides group size and multiple peaks. With a\n  few hundred points or fewer, overlay them with\n  `sns.stripplot(..., alpha=0.3)`.\n- **Overplotting:** lower `alpha`, use smaller markers, or pass both `x` and\n  `y` to `sns.histplot()` for a 2-D histogram.\n- **Skewed variables:** use `ax.set_xscale(\"log\")` or `ax.set_yscale(\"log\")`\n  for strongly right-skewed values. Say so in the axis label.\n- **Bars:** a bar's length encodes its value, so the axis starts at zero. Use\n  points when zero is not meaningful.\n- **Order:** sort categories by value unless they have a natural order.\n- **Missing-value codes:** check the codebook for codes such as -99 before\n  plotting, and recode them to missing.\n- **Missing values:** seaborn drops rows with missing values without a\n  warning. Count them with `df[cols].isna().sum()` before you trust the\n  figure.\n- **Panels:** panels that readers compare share axis limits, with\n  `sharex=True` and `sharey=True`. Free scales suit panels not meant to be\n  compared. Say so in the caption.\n\n## Titles and labels\n\n- **Axes:** use plain names with units, such as \"Income per person (US\n  dollars, log scale)\". Replace column names such as `sbp_mean`.\n- **Title:** a title that states the finding, such as \"Blood pressure rises\n  with age in every group\", can help a figure communicate its result. Make\n  sure it suits the venue. Some journals and readers prefer a matter-of-fact\n  title that names the variables, such as \"Systolic blood pressure by age\".\n  Follow the venue's style, and ask the user when it is unclear. Do not\n  invent a finding.\n- **Subtitle and caption:** say what is measured, for whom, and when. Give\n  the data source, the sample size, and caveats such as the handling of\n  missing values.\n- **Direct labels:** with a few series, label lines or points directly with\n  `ax.annotate()` or `ax.text()` and remove the legend.\n- **Uncertainty:** show it with the same method and interval level as the\n  analysis. Label a confidence interval as uncertainty in the estimate.\n\n## Color\n\n- For categories, use a palette readable with color vision deficiency, such\n  as `sns.color_palette(\"colorblind\")` or viridis. For ordered values, use\n  viridis or a single-hue sequential palette.\n- Pair color with labels, position, marker shape, or line style, so the figure\n  still works in grayscale.\n\n## Styles\n\nA shared style is a good tactic when a project makes many figures. It keeps\nthem consistent and saves repeating the same settings. Define it once, as a\nstyle sheet or a function that sets `rcParams`, and apply it to each figure.\nIf the project already has a style, use it. A one-off figure can set its style\ndirectly.\n\n## Saving\n\n- Create figures with `fig, ax = plt.subplots(figsize=(...))` and pass\n  `ax=ax` to seaborn, so each figure has a handle to save.\n- Set the size before tuning text. Text that reads well on screen can be too\n  small at column width.\n- Prefer vector output, such as PDF or SVG, for line and text figures when the\n  destination accepts it. Check the saved file for clipped labels.\n- Close finished figures with `plt.close(fig)` in loops and scripts.\n- In a Framework project, prefer `fw.save_figure(fig, \"name\")`.\n"
+                    }
+                },
+                "packages": {
+                    "default_packages": {
+                        "seaborn": {
+                            "source": "pypi",
+                            "auto_attach": false
+                        },
+                        "matplotlib": {
+                            "source": "pypi",
+                            "auto_attach": false
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/writing",
+            "version": 4,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/writing-python",
+            "version": 4,
+            "layer": {
+                "skills": {
+                    "writing": {
+                        "sync": {
+                            "hash": "221f7654be8309f0020f90a81eda7f76fcadb34448c33201ff3cfa71f9f6250f",
+                            "server": "https://framework.pub",
+                            "variant": "python",
+                            "version": 5,
+                            "skill_id": "framework:writing"
+                        },
+                        "bundle": [
+                            {
+                                "path": "SKILL.md",
+                                "content": "LS0tCm5hbWU6IHdyaXRpbmcKZGVzY3JpcHRpb246IFVzZSBiZWZvcmUgd3JpdGluZyBvciBlZGl0aW5nIHByb3NlIGluIGEgZGF0YSBhbmFseXNpcyBwcm9qZWN0LCBzdWNoIGFzIHRleHQgYWJvdXQgcmVzdWx0cywgbm90ZWJvb2sgdGV4dCwgY2FwdGlvbnMsIFJFQURNRXMsIGFuZCBzdW1tYXJpZXMgb2YgZmluZGluZ3MuIENvdmVycyBhIHBsYWluIHJlZ2lzdGVyLCBudW1iZXJzIHdpdGggdGhlaXIgdW5jZXJ0YWludHksIGNsYWltcyB0aGF0IG1hdGNoIHRoZSBkZXNpZ24sIGFuZCBjb25zaXN0ZW50IG5hbWVzLgptZXRhZGF0YToKICB0aXRsZTogV3JpdGluZwogIHN1bW1hcnk6IFBsYWluLCBleGFjdCBwcm9zZSBhYm91dCBkYXRhIGFuZCBmaW5kaW5ncy4KLS0tCgojIFdyaXRpbmcKCiMjIFJlZ2lzdGVyCgotIFByZWZlciBwbGFpbiBkZWNsYXJhdGl2ZSBzZW50ZW5jZXMgd2l0aCBvbmUgY2xhaW0gZWFjaC4KLSBVc2UgYnVsbGV0cyBmb3IgcGFyYWxsZWwgbGlzdHMgYW5kIHBhcmFncmFwaHMgZm9yIGFyZ3VtZW50cy4KLSBSZXBvcnQgbnVsbCBhbmQgdW5leHBlY3RlZCByZXN1bHRzIGluIHRoZSBzYW1lIHJlZ2lzdGVyIGFzIGV4cGVjdGVkIG9uZXMuCgojIyBOdW1iZXJzCgotIFVzZSBvbmx5IG51bWJlcnMgdGhhdCBjb21lIGZyb20gdGhlIGFuYWx5c2lzIG91dHB1dC4KLSBTdGF0ZSBhbiBlc3RpbWF0ZSB3aXRoIGl0cyB1bmNlcnRhaW50eSwgaXRzIHVuaXRzLCBhbmQgdGhlIHNhbXBsZSBpdAogIGRlc2NyaWJlczogIk1lYW4gc3lzdG9saWMgcHJlc3N1cmUgd2FzIDQuMiBtbUhnIGhpZ2hlciBpbiB0aGUgdHJlYXRtZW50CiAgZ3JvdXAgKDk1JSBDSSAxLjggdG8gNi42OyBuID0gNDEyKS4iCi0gR2l2ZSBjb3VudHMgd2l0aCB0aGVpciBkZW5vbWluYXRvcnM6ICIzOCBvZiA0MTIgcGFydGljaXBhbnRzICg5JSkiLgotIFJvdW5kIHRvIHRoZSBwcmVjaXNpb24gdGhlIGRhdGEgc3VwcG9ydHMsIGFuZCB1c2UgdGhlIHNhbWUgbnVtYmVyIG9mCiAgZGVjaW1hbHMgZm9yIHRoZSBzYW1lIHF1YW50aXR5IHRocm91Z2hvdXQuCi0gVXNlICJzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50IiBvbmx5IGFib3V0IGEgdGVzdC4KCiMjIENsYWltcwoKLSBVc2UgY2F1c2FsIHZlcmJzIHN1Y2ggYXMgImluY3JlYXNlZCIgYW5kICJjYXVzZWQiIGZvciByYW5kb21pemVkIG9yCiAgZXhwbGljaXRseSBjYXVzYWwgZGVzaWducy4KLSBGb3Igb2JzZXJ2YXRpb25hbCBhc3NvY2lhdGlvbnMsIHVzZSAid2FzIGFzc29jaWF0ZWQgd2l0aCIsICJ3YXMgaGlnaGVyCiAgYW1vbmciLCBvciAiZGlmZmVyZWQgYnkiLiBLZWVwIHRoZSBzYW1lIHZlcmJzIGluIHRpdGxlcyBhbmQgc3VtbWFyaWVzLgotIENhbGwgYW4gZXhwbG9yYXRvcnkgYW5hbHlzaXMgZXhwbG9yYXRvcnkuCi0gU3RhdGUgYSBsaW1pdGF0aW9uIG9uY2UsIHNwZWNpZmljYWxseSwgd2hlcmUgaXQgYXBwbGllczogIkluY29tZSB3YXMKICBzZWxmLXJlcG9ydGVkIGFuZCBtaXNzaW5nIGZvciAxNCUgb2YgaG91c2Vob2xkcy4iCgojIyBOYW1lcwoKLSBDYWxsIHZhcmlhYmxlcyBieSB3aGF0IHRoZXkgbWVhc3VyZSwgc3VjaCBhcyAiaG91c2Vob2xkIGluY29tZSIuIFVzZSBhCiAgY29sdW1uIG5hbWUgc3VjaCBhcyBgaGhfaW5jXzJgIG9ubHkgd2hlbiB0aGUgcmVhZGVyIG5lZWRzIHRvIGZpbmQgaXQgaW4gdGhlCiAgZGF0YS4KLSBHaXZlIGVhY2ggZ3JvdXAgb25lIG5hbWUgYW5kIGtlZXAgaXQuCi0gRGVmaW5lIGFuIGFiYnJldmlhdGlvbiBhdCBmaXJzdCB1c2UuCi0gVXNlIHRoZSBmaWVsZCdzIHRlcm1zIGZvciBzdGF0aXN0aWNhbCBjb25jZXB0cy4KCiMjIFdvcmRpbmcKClByZWZlciBwbGFpbiB3b3JkaW5nIHRvIHRoZXNlOgoKLSBPdmVyc2VsbGluZywgc3VjaCBhcyAic3RyaWtpbmciLCAicmVtYXJrYWJsZSIsICJjbGVhcmx5IHNob3dzIiwgYW5kCiAgInByb3ZlcyIuCi0gT3BlbmVycyBzdWNoIGFzICJJdCBpcyB3b3J0aCBub3RpbmcgdGhhdCIgYW5kICJJbnRlcmVzdGluZ2x5Ii4KLSBOYXJyYXRpb24gb2YgZWFjaCBzdGVwLCBzdWNoIGFzICJOb3cgd2UgbG9hZCB0aGUgZGF0YSIuIFNheSB3aGF0IGEgc3RlcCBpcwogIGZvci4KLSBTdGFja2VkIGhlZGdlcyBzdWNoIGFzICJtYXkgcG90ZW50aWFsbHkgc3VnZ2VzdCIuCg==",
+                                "executable": false
+                            }
+                        ],
+                        "content": "---\nname: writing\ndescription: Use before writing or editing prose in a data analysis project, such as text about results, notebook text, captions, READMEs, and summaries of findings. Covers a plain register, numbers with their uncertainty, claims that match the design, and consistent names.\nmetadata:\n  title: Writing\n  summary: Plain, exact prose about data and findings.\n---\n\n# Writing\n\n## Register\n\n- Prefer plain declarative sentences with one claim each.\n- Use bullets for parallel lists and paragraphs for arguments.\n- Report null and unexpected results in the same register as expected ones.\n\n## Numbers\n\n- Use only numbers that come from the analysis output.\n- State an estimate with its uncertainty, its units, and the sample it\n  describes: \"Mean systolic pressure was 4.2 mmHg higher in the treatment\n  group (95% CI 1.8 to 6.6; n = 412).\"\n- Give counts with their denominators: \"38 of 412 participants (9%)\".\n- Round to the precision the data supports, and use the same number of\n  decimals for the same quantity throughout.\n- Use \"statistically significant\" only about a test.\n\n## Claims\n\n- Use causal verbs such as \"increased\" and \"caused\" for randomized or\n  explicitly causal designs.\n- For observational associations, use \"was associated with\", \"was higher\n  among\", or \"differed by\". Keep the same verbs in titles and summaries.\n- Call an exploratory analysis exploratory.\n- State a limitation once, specifically, where it applies: \"Income was\n  self-reported and missing for 14% of households.\"\n\n## Names\n\n- Call variables by what they measure, such as \"household income\". Use a\n  column name such as `hh_inc_2` only when the reader needs to find it in the\n  data.\n- Give each group one name and keep it.\n- Define an abbreviation at first use.\n- Use the field's terms for statistical concepts.\n\n## Wording\n\nPrefer plain wording to these:\n\n- Overselling, such as \"striking\", \"remarkable\", \"clearly shows\", and\n  \"proves\".\n- Openers such as \"It is worth noting that\" and \"Interestingly\".\n- Narration of each step, such as \"Now we load the data\". Say what a step is\n  for.\n- Stacked hedges such as \"may potentially suggest\".\n"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/sensitive-data",
+            "version": 2,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/sensitive-data-python",
+            "version": 2,
+            "layer": {
+                "skills": {
+                    "framework-sensitive-data": {
+                        "package": true
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/workflow-jupyter",
+            "version": 1,
+            "layer": {
+                "scaffold": {
+                    "workflow": "jupyter",
+                    "notebook_format": "jupyter"
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/jupyter",
+            "version": 1,
+            "layer": {
+                "tools": {
+                    "jupyter": true
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/jupyter-python",
+            "version": 1,
+            "layer": {
+                "packages": {
+                    "default_packages": {
+                        "ipykernel": {
+                            "source": "pypi",
+                            "auto_attach": false
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/quarto",
+            "version": 1,
+            "layer": {
+                "tools": {
+                    "quarto": true
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/git",
+            "version": 2,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/git-python",
+            "version": 2,
+            "layer": {
+                "skills": {
+                    "git-workflow": {
+                        "sync": {
+                            "hash": "cdbce1802bc49454803c0c9b2828d7bd3ff7c60e6f19c23f3954417ede300a81",
+                            "server": "https://framework.pub",
+                            "variant": "python",
+                            "version": 2,
+                            "skill_id": "framework:git-workflow"
+                        },
+                        "bundle": [
+                            {
+                                "path": "SKILL.md",
+                                "content": "LS0tCm5hbWU6IGdpdC13b3JrZmxvdwpkZXNjcmlwdGlvbjogVXNlIHdoZW4gcmV2aWV3aW5nIGNoYW5nZXMsIGNvbW1pdHRpbmcgYW5hbHlzaXMgd29yaywgcmVzb2x2aW5nIG1lcmdlIGNvbmZsaWN0cywgb3IgY29vcmRpbmF0aW5nIGJyYW5jaGVzIGluIGEgcmVzZWFyY2ggcmVwb3NpdG9yeS4KbWV0YWRhdGE6CiAgdGl0bGU6IFVzaW5nIEdpdCBpbiBhbiBhbmFseXNpcyBwcm9qZWN0CiAgc3VtbWFyeTogUmV2aWV3YWJsZSBHaXQgY2hhbmdlcyBmb3IgYW5hbHlzaXMgY29kZSBhbmQgcHJvamVjdCBmaWxlcy4KLS0tCgojIFVzaW5nIEdpdCBpbiBhbiBhbmFseXNpcyBwcm9qZWN0CgojIyBDaGFuZ2VzCgotIENoZWNrIHRoZSBicmFuY2gsIHN0YXR1cywgYW5kIGRpZmYgYmVmb3JlIGVkaXRpbmcgb3IgY29tbWl0dGluZy4KLSBLZWVwIHVucmVsYXRlZCB3b3JrIGFzIGl0IGlzLgotIFN0YWdlIGV4cGxpY2l0IHBhdGhzLCBzbyBnZW5lcmF0ZWQgb3V0cHV0LCBkYXRhLCBjcmVkZW50aWFscywgYW5kCiAgbWFjaGluZS1zcGVjaWZpYyBmaWxlcyBzdGF5IG91dCBvZiBjb21taXRzLgotIEtlZXAgZWFjaCBjb21taXQgdG8gb25lIGNvaGVyZW50IGNoYW5nZSwgYW5kIGRlc2NyaWJlIHdoYXQgY2hhbmdlZC4KCiMjIENvbmZsaWN0cwoKLSBSZXNvbHZlIG5vdGVib29rIGNvbmZsaWN0cyB3aXRoIG5vdGVib29rLWF3YXJlIHRvb2xzIHdoZW4gYXZhaWxhYmxlLgotIFJlZ2VuZXJhdGUgZ2VuZXJhdGVkIGZpbGVzIGZyb20gdGhlaXIgc291cmNlLgotIFJlcnVuIGFmZmVjdGVkIGFuYWx5c2VzIGFmdGVyIHJlc29sdmluZyBhIGNvbmZsaWN0LgoKIyMgU2hhcmVkIGhpc3RvcnkKCi0gTGVhdmUgc2hhcmVkIGhpc3RvcnkgYXMgaXQgaXMuIENoZWNrIGRpdmVyZ2VuY2UgYmVmb3JlIG1lcmdpbmcgb3IgcmViYXNpbmcuCi0gQ29tbWl0LCBwdXNoLCBhbmQgcHVibGlzaCBvbmx5IHdoZW4gdGhlIHVzZXIgYXNrcy4K",
+                                "executable": false
+                            }
+                        ],
+                        "content": "---\nname: git-workflow\ndescription: Use when reviewing changes, committing analysis work, resolving merge conflicts, or coordinating branches in a research repository.\nmetadata:\n  title: Using Git in an analysis project\n  summary: Reviewable Git changes for analysis code and project files.\n---\n\n# Using Git in an analysis project\n\n## Changes\n\n- Check the branch, status, and diff before editing or committing.\n- Keep unrelated work as it is.\n- Stage explicit paths, so generated output, data, credentials, and\n  machine-specific files stay out of commits.\n- Keep each commit to one coherent change, and describe what changed.\n\n## Conflicts\n\n- Resolve notebook conflicts with notebook-aware tools when available.\n- Regenerate generated files from their source.\n- Rerun affected analyses after resolving a conflict.\n\n## Shared history\n\n- Leave shared history as it is. Check divergence before merging or rebasing.\n- Commit, push, and publish only when the user asks.\n"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "facet",
+            "key": "framework/jupyter-skills",
+            "version": 2,
+            "layer": {}
+        },
+        {
+            "kind": "facet",
+            "key": "framework/jupyter-skills-python",
+            "version": 2,
+            "layer": {
+                "skills": {
+                    "jupyter-notebooks": {
+                        "sync": {
+                            "hash": "56bc42c6fe91d337936cb57c4cba32315bab3a064659f4e751bfb07098b4db75",
+                            "server": "https://framework.pub",
+                            "variant": "python",
+                            "version": 2,
+                            "skill_id": "framework:jupyter-notebooks"
+                        },
+                        "bundle": [
+                            {
+                                "path": "SKILL.md",
+                                "content": "LS0tCm5hbWU6IGp1cHl0ZXItbm90ZWJvb2tzCmRlc2NyaXB0aW9uOiBVc2Ugd2hlbiBjcmVhdGluZyBvciBlZGl0aW5nIEp1cHl0ZXIgbm90ZWJvb2tzLCBpbmNsdWRpbmcga2VybmVsIHNlbGVjdGlvbiwgZXhlY3V0aW9uIG9yZGVyLCByZXByb2R1Y2liaWxpdHksIGFuZCBvdXRwdXQgcmV2aWV3IGZvciBSIG9yIFB5dGhvbi4KbWV0YWRhdGE6CiAgdGl0bGU6IFdvcmtpbmcgaW4gSnVweXRlciBub3RlYm9va3MKICBzdW1tYXJ5OiBOb3RlYm9va3MgdGhhdCBleGVjdXRlIGluIG9yZGVyIHdpdGggdGhlIGludGVuZGVkIGtlcm5lbC4KLS0tCgojIFdvcmtpbmcgaW4gSnVweXRlciBub3RlYm9va3MKCiMjIEVkaXRpbmcKCi0gQ2hlY2sgdGhlIG5vdGVib29rJ3Mga2VybmVsIGFuZCB0aGUgcHJvamVjdCBlbnZpcm9ubWVudCBiZWZvcmUgZWRpdGluZy4KLSBFZGl0IG5vdGVib29rcyB3aXRoIG5vdGVib29rLWF3YXJlIHRvb2xzLCB3aGljaCBrZWVwIHRoZSBKU09OIHZhbGlkLiBLZWVwCiAgY2VsbCBpZHMgYW5kIG1ldGFkYXRhLgoKIyMgRXhlY3V0aW9uIG9yZGVyCgotIEFycmFuZ2UgY2VsbHMgaW4gdGhlIG9yZGVyIHRoZXkgcnVuOiBzZXR1cCBhbmQgaW1wb3J0cywgZGF0YSBsb2FkaW5nLAogIHRyYW5zZm9ybWF0aW9ucywgYW5hbHlzaXMsIGFuZCBvdXRwdXQuCi0gS2VlcCB0ZXh0IGNlbGxzIG5leHQgdG8gdGhlIHJlc3VsdHMgdGhleSBleHBsYWluLgotIFJlc3RhcnQgdGhlIGtlcm5lbCBhbmQgcnVuIGFsbCBjZWxscyB0byBjb25maXJtIHRoZSBub3RlYm9vayBydW5zIGluIG9yZGVyLgotIFVzZSBwcm9qZWN0LXJlbGF0aXZlIHBhdGhzLCBhbmQgc2V0IGEgc2VlZCB3aGVuIHJhbmRvbW5lc3MgYWZmZWN0cyByZXBvcnRlZAogIHJlc3VsdHMuCgojIyBPdXRwdXRzCgotIEZvbGxvdyB0aGUgcmVwb3NpdG9yeSdzIHBvbGljeSBvbiBrZWVwaW5nIG9yIGNsZWFyaW5nIG91dHB1dHMuCi0gU2F2ZSBsYXJnZSBkYXRhIGFuZCBiaW5hcnkgb3V0cHV0cyBhcyBmaWxlcywgYW5kIHJlZmVyIHRvIHRoZW0uCi0gQ2hlY2sgb3V0cHV0cyBmb3IgY3JlZGVudGlhbHMgYmVmb3JlIHNoYXJpbmcuCg==",
+                                "executable": false
+                            }
+                        ],
+                        "content": "---\nname: jupyter-notebooks\ndescription: Use when creating or editing Jupyter notebooks, including kernel selection, execution order, reproducibility, and output review for R or Python.\nmetadata:\n  title: Working in Jupyter notebooks\n  summary: Notebooks that execute in order with the intended kernel.\n---\n\n# Working in Jupyter notebooks\n\n## Editing\n\n- Check the notebook's kernel and the project environment before editing.\n- Edit notebooks with notebook-aware tools, which keep the JSON valid. Keep\n  cell ids and metadata.\n\n## Execution order\n\n- Arrange cells in the order they run: setup and imports, data loading,\n  transformations, analysis, and output.\n- Keep text cells next to the results they explain.\n- Restart the kernel and run all cells to confirm the notebook runs in order.\n- Use project-relative paths, and set a seed when randomness affects reported\n  results.\n\n## Outputs\n\n- Follow the repository's policy on keeping or clearing outputs.\n- Save large data and binary outputs as files, and refer to them.\n- Check outputs for credentials before sharing.\n"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "settings",
+            "key": "framework defaults",
+            "layer": {
+                "scaffold": {
+                    "ide": "vscode",
+                    "seed_on_scaffold": true,
+                    "seed": "123",
+                    "set_theme_on_scaffold": false,
+                    "matplotlib_style": "seaborn-v0_8-whitegrid",
+                    "source_all_functions": true
+                },
+                "ai": {
+                    "assistants": {
+                        "claude": false,
+                        "codex": false,
+                        "copilot": false
+                    }
+                }
+            }
+        },
+        {
+            "kind": "blueprint",
+            "key": "framework/project_sensitive",
+            "layer": {
+                "skills": {
+                    "framework-sensitive-data": {
+                        "package": true
+                    }
+                }
+            }
+        },
+        {
+            "kind": "project",
+            "key": "bayesian-social-statistics-python choices",
+            "layer": {
+                "skills": {
+                    "framework-cache": null,
+                    "framework-databases": null,
+                    "framework-publishing": null
+                }
+            }
+        },
+        {
+            "kind": "project",
+            "key": "bayesian-social-statistics-python",
+            "layer": {
+                "language": "python",
+                "tools": {
+                    "quarto": true,
+                    "quarto_manuscript": false,
+                    "quarto_slides": false,
+                    "jupyter": true,
+                    "uv": true
+                }
+            }
+        }
+    ]
+}
