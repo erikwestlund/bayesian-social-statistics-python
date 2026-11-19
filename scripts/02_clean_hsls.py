@@ -16,21 +16,21 @@ splits them in two (see docs/missing-data.md):
 
 Both become missing values, so a flag keeps the difference. A row with
 derive = "applies" builds a 0/1 flag from its source: 0 for a logical skip,
-1 for an answer, missing for nonresponse. A row with within = <flag> is
-missing wherever that flag is not 1.
+1 for an answer, missing for nonresponse. A row with fill = <name>=<value>
+takes that value wherever it is still missing and the named variable is
+observed. A row with within = <flag> is missing wherever that flag is not 1.
 
 Only the listed codes become missing. Several variables, such as the SES
 composite, have real negative values, so "negative means missing" would drop
 real data.
 """
 
-import pandas as pd
-
 import framework as fw
+import pandas as pd
 
 fw.scaffold()
 
-crosswalk = fw.data_read("inputs.public.raw.hsls_crosswalk", col_types="c" * 13).fillna("")
+crosswalk = fw.data_read("inputs.public.raw.hsls_crosswalk", col_types="c" * 14).fillna("")
 
 
 def codes(text: str) -> list[float]:
@@ -54,12 +54,16 @@ raw = fw.data_read(
 clean = pd.DataFrame(index=raw.index)
 for row in crosswalk.itertuples():
     source = raw[row.nces]
-    missing = source.isin(codes(row.missing))
+    # A blank cell is missing too, so a flag never reads it as an answer
+    missing = source.isin(codes(row.missing)) | source.isna()
     skipped = source.isin(codes(row.skip))
     if row.derive == "applies":
         column = (~skipped).astype(float).mask(missing)
     else:
         column = source.mask(missing | skipped).replace(pairs(row.recode))
+    if row.fill:
+        other, value = row.fill.split("=", 1)
+        column = column.mask(column.isna() & clean[other].notna(), float(value))
     if row.within:
         column = column.where(clean[row.within] == 1)
     clean[row.name] = column
