@@ -30,7 +30,7 @@ import pandas as pd
 
 fw.scaffold()
 
-data_spec = fw.data_read("inputs.public.raw.hsls_data_spec", col_types="c" * 14).fillna("")
+data_spec = fw.data_read("inputs.raw.hsls_data_spec", col_types="c" * 14).fillna("")
 
 
 def codes(text: str) -> list[float]:
@@ -46,7 +46,7 @@ def pairs(text: str) -> dict[float, float]:
 
 
 raw = fw.data_read(
-    "inputs.private.raw.hsls_student",
+    "inputs.raw.hsls_student",
     usecols=list(dict.fromkeys(data_spec["nces"])),
     dtype={"STU_ID": str},
 )
@@ -71,6 +71,6 @@ for row in data_spec.itertuples():
 # Saved to the file its catalog entry names. framework-py 0.1.0.dev26 rewrites an
 # existing entry when data_save() is given its name (dropping its description),
 # so pass the entry's path until a release with the fix; then this becomes
-# fw.data_save(clean, "inputs.private.final.hsls_clean").
-fw.data_save(clean, str(fw.data_info("inputs.private.final.hsls_clean").path))
+# fw.data_save(clean, "inputs.final.hsls_clean").
+fw.data_save(clean, str(fw.data_info("inputs.final.hsls_clean").path))
 print(f"{len(clean):,} students, {clean.shape[1]} variables")

@@ -32,13 +32,13 @@ RESERVE = {
     -9: "Item nonresponse",
 }
 
-data_spec = fw.data_read("inputs.public.raw.hsls_data_spec", col_types="c" * 14).fillna("")
+data_spec = fw.data_read("inputs.raw.hsls_data_spec", col_types="c" * 14).fillna("")
 raw = fw.data_read(
-    "inputs.private.raw.hsls_student",
+    "inputs.raw.hsls_student",
     usecols=list(dict.fromkeys(data_spec["nces"])),
     dtype={"STU_ID": str},
 )
-clean = fw.data_read("inputs.private.final.hsls_clean", dtype={"student_id": str})
+clean = fw.data_read("inputs.final.hsls_clean", dtype={"student_id": str})
 
 # The code tables compare raw and clean values row by row, so the two files
 # must hold the same students in the same order
@@ -152,7 +152,7 @@ out = [
     "# HSLS:09 codebook",
     "",
     "This codebook lists the variables in each project's",
-    f"`inputs/private/final/hsls_clean.csv`, one row per student ({count(len(clean))} students).",
+    f"`inputs/final/hsls_clean.csv`, one row per student ({count(len(clean))} students).",
     "Counts are unweighted. The cleaning scripts build the file from",
     "`data_spec/hsls.csv`, and `docs/missing-data.md` explains the reserve codes.",
     "",

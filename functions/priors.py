@@ -148,7 +148,7 @@ def read_mobility():
     and adult SES (adult_ses_z) standardized. read_mobility() in the R project
     does the same."""
     els = fw.data_read(
-        "inputs.private.final.els_clean",
+        "inputs.final.els_clean",
         usecols=["student_id", "w1_ses", "w4_ses"],
         dtype={"student_id": str},
     )

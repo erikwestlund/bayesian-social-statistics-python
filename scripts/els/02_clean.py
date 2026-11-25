@@ -20,7 +20,7 @@ import pandas as pd
 
 fw.scaffold()
 
-data_spec = fw.data_read("inputs.public.raw.els_data_spec", dtype=str, keep_default_na=False)
+data_spec = fw.data_read("inputs.raw.els_data_spec", dtype=str, keep_default_na=False)
 
 
 def codes(text: str) -> list[float]:
@@ -41,7 +41,7 @@ def labelled(text: str) -> set[float]:
 
 
 raw = fw.data_read(
-    "inputs.private.raw.els_student",
+    "inputs.raw.els_student",
     usecols=list(dict.fromkeys([*data_spec["nces"], "SCH_ID"])),
     dtype={"STU_ID": str},
 )
@@ -101,7 +101,7 @@ assert (clean["w1_ses_imputed"].isna() == clean["w1_ses"].isna()).all()
 by_names = [f"BYSTU{i}" for i in range(1, 201)]
 f1_names = [f"F1PNL{i}" for i in range(1, 201)]
 replicates = fw.data_read(
-    "inputs.private.raw.els_brr",
+    "inputs.raw.els_brr",
     usecols=["STU_ID", *by_names, *f1_names],
     dtype={"STU_ID": str},
 )
@@ -113,5 +113,5 @@ assert np.isfinite(weights.to_numpy()).all() and (weights.to_numpy() >= 0).all()
 weights.columns = [f"w1_weight_rep{i}" for i in range(1, 201)] + [f"w2_weight_panel_rep{i}" for i in range(1, 201)]
 clean = pd.concat([clean, weights.reset_index(drop=True).set_axis(clean.index)], axis=1)
 
-fw.data_save(clean, str(fw.data_info("inputs.private.final.els_clean").path))
+fw.data_save(clean, str(fw.data_info("inputs.final.els_clean").path))
 print(f"{len(clean):,} students, {clean.shape[1]} variables")

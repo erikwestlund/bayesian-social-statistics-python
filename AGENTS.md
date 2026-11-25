@@ -5,7 +5,7 @@ It is the canonical context file; detailed workflow instructions live in the
 skills listed below. Edit the sections without regeneration markers freely -
 they won't be overwritten.
 
-This project holds restricted data. Do not read or print files in `inputs/private/`, `outputs/private/`. Work from the data dictionary and simulated data instead.
+This project uses public-use data (HSLS:09 and ELS:2002 from NCES). It is a standard Framework project, not a sensitive one. `.gitignore` keeps the NCES files, the cleaned data, and rendered outputs out of git, and says why for each. Never print individual rows; summaries, models, and figures are fine.
 
 ## Skills
 
@@ -62,22 +62,20 @@ of each file. This project's data directories:
 
 | Purpose | Directory |
 |---------|-----------|
-| Private raw data | `inputs/private/raw/` |
-| Public raw data | `inputs/public/raw/` |
-| Private intermediate | `inputs/private/intermediate/` |
-| Public intermediate | `inputs/public/intermediate/` |
-| Private analysis-ready | `inputs/private/final/` |
-| Public analysis-ready | `inputs/public/final/` |
-| Private tables | `outputs/private/tables/` |
-| Public tables | `outputs/public/tables/` |
-| Private figures | `outputs/private/figures/` |
-| Public figures | `outputs/public/figures/` |
+| Raw data (immutable) | `inputs/raw/` |
+| Intermediate/cleaned data | `inputs/intermediate/` |
+| Analysis-ready data | `inputs/final/` |
+| Output tables | `outputs/tables/` |
+| Output figures | `outputs/figures/` |
+| Saved models | `outputs/models/` |
+| Reports | `outputs/reports/` |
 
-## Private Folders
+## Data Out of Git
 
-This project was created as privacy sensitive. Private files go in the
-`private/` folders, which Git ignores. The `framework-sensitive-data` skill
-describes the folders and the checks Framework runs.
+Nothing in this project is confidential. `.gitignore` names each folder that
+stays out of git and why: the NCES downloads (`inputs/raw/els/`,
+`inputs/raw/hsls/`) and documentation PDFs, the cleaned data
+(`inputs/intermediate/`, `inputs/final/`), and rendered outputs (`outputs/`).
 
 ## Project Notes
 
