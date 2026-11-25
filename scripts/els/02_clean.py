@@ -2,10 +2,10 @@
 
 Run from the project root:  uv run python scripts/els/02_clean.py
 
-inputs/public/raw/els_crosswalk.csv drives every step: which NCES variables
+shared/data_spec/els.csv drives every step: which NCES variables
 to keep, missing-value codes, recodes, and the new names. The names follow the
-HSLS:09 crosswalk, so code written for one study reads the other. The R and
-Stata projects keep the same crosswalk, so all three build the same file.
+HSLS:09 data spec, so code written for one study reads the other. The R,
+Python, and Stata projects all read it, so all three build the same file.
 
 A row's missing codes are nonresponse; its skip codes mark a survey component
 that did not apply. Both become missing values. A row with fill =
@@ -20,7 +20,7 @@ import pandas as pd
 
 fw.scaffold()
 
-crosswalk = fw.data_read("inputs.public.raw.els_crosswalk", dtype=str, keep_default_na=False)
+data_spec = fw.data_read("inputs.public.raw.els_data_spec", dtype=str, keep_default_na=False)
 
 
 def codes(text: str) -> list[float]:
@@ -42,12 +42,12 @@ def labelled(text: str) -> set[float]:
 
 raw = fw.data_read(
     "inputs.private.raw.els_student",
-    usecols=list(dict.fromkeys([*crosswalk["nces"], "SCH_ID"])),
+    usecols=list(dict.fromkeys([*data_spec["nces"], "SCH_ID"])),
     dtype={"STU_ID": str},
 )
 
 clean = pd.DataFrame(index=raw.index)
-for row in crosswalk.itertuples():
+for row in data_spec.itertuples():
     source = raw[row.nces]
     # A blank cell is missing too, so a flag never reads it as an answer
     missing = source.isin(codes(row.missing)) | source.isna()
@@ -63,18 +63,18 @@ for row in crosswalk.itertuples():
         raise SystemExit(f"Unlabelled value in {row.name}")
     clean[row.name] = column
 
-# Every reserve code the crosswalk does not list would pass through as a value.
+# Every reserve code the data spec does not list would pass through as a value.
 # These variables have no real negative values, so any left is a code the
-# crosswalk missed.
+# data spec missed.
 real_negatives = {"student_id", "w1_ses", "w1_ses_duncan", "w4_ses"}
-nonnegative = [name for name in crosswalk["name"] if name not in real_negatives]
+nonnegative = [name for name in data_spec["name"] if name not in real_negatives]
 leftover = [name for name in nonnegative if (clean[name] < 0).any()]
 if leftover:
     raise SystemExit(f"Unlisted negative codes in: {', '.join(leftover)}")
 
 assert (raw["SCH_ID"] == -5).all()
 assert clean["student_id"].notna().all() and not clean["student_id"].duplicated().any()
-assert not crosswalk["name"].duplicated().any()
+assert not data_spec["name"].duplicated().any()
 assert clean["stratum"].notna().all() and clean["stratum"].nunique() == 361
 assert clean["psu"].isin([1, 2, 3]).all()
 # PSU occupies one digit in the NCES design key (2006-344, appendix G).

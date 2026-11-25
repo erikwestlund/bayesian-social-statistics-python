@@ -1,7 +1,7 @@
-"""Helpers for the HSLS:09 crosswalk and the cleaned file.
+"""Helpers for the HSLS:09 data spec and the cleaned file.
 
 scaffold() puts functions/ on the import path, so notebooks import this with
-`import hsls`. The R project keeps matching helpers in functions/hsls_crosswalk.R.
+`import hsls`. The R project keeps matching helpers in functions/data_spec.R.
 """
 
 import numpy as np
@@ -20,21 +20,21 @@ def value_labels(text: str) -> dict[float, str]:
     return {float(value): label for value, label in (pair.split("=", 1) for pair in text.split(";"))}
 
 
-def missing_reasons(raw: pd.DataFrame, clean: pd.DataFrame, crosswalk: pd.DataFrame) -> pd.DataFrame:
+def missing_reasons(raw: pd.DataFrame, clean: pd.DataFrame, data_spec: pd.DataFrame) -> pd.DataFrame:
     """Why each value in the clean file is missing, one column per variable.
 
     Each cell is one of:
     - "Observed": the clean value is present
     - "Nonresponse": the raw value is a nonresponse code or blank
     - "Logical skip": the raw value is a logical-skip code
-    - "Outside the flag": the raw value is an answer, but the crosswalk's
+    - "Outside the flag": the raw value is an answer, but the data spec's
       `within` flag is not 1 for this student
 
     A flag built from a logical skip (derive = applies) turns the skip into 0,
     so its skips count as observed.
     """
     reasons = {}
-    for row in crosswalk.itertuples():
+    for row in data_spec.itertuples():
         source = raw[row.nces]
         observed = clean[row.name].notna()
         nonresponse = source.isin(codes(row.missing)) | source.isna()

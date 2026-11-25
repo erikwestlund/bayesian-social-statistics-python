@@ -2,12 +2,12 @@
 
 Run from the project root:  uv run python scripts/hsls/02_clean.py
 
-inputs/public/raw/hsls_crosswalk.csv drives every step: which NCES variables
-to keep, missing-value codes, recodes, and the new names. The Stata and R
-projects keep the same crosswalk, so all three build the same file.
+shared/data_spec/hsls.csv drives every step: which NCES variables
+to keep, missing-value codes, recodes, and the new names. The R, Python, and
+Stata projects all read it, so all three build the same file.
 
-NCES marks missing values with negative reserve codes, and the crosswalk
-splits them in two (see docs/missing-data.md):
+NCES marks missing values with negative reserve codes, and the data spec
+splits them in two (see shared/docs/missing-data.md):
 
 - missing: nonresponse (-9, -8, -4, ...). The question applied but went
   unanswered. Analyses impute these or model them.
@@ -30,7 +30,7 @@ import pandas as pd
 
 fw.scaffold()
 
-crosswalk = fw.data_read("inputs.public.raw.hsls_crosswalk", col_types="c" * 14).fillna("")
+data_spec = fw.data_read("inputs.public.raw.hsls_data_spec", col_types="c" * 14).fillna("")
 
 
 def codes(text: str) -> list[float]:
@@ -47,12 +47,12 @@ def pairs(text: str) -> dict[float, float]:
 
 raw = fw.data_read(
     "inputs.private.raw.hsls_student",
-    usecols=list(dict.fromkeys(crosswalk["nces"])),
+    usecols=list(dict.fromkeys(data_spec["nces"])),
     dtype={"STU_ID": str},
 )
 
 clean = pd.DataFrame(index=raw.index)
-for row in crosswalk.itertuples():
+for row in data_spec.itertuples():
     source = raw[row.nces]
     # A blank cell is missing too, so a flag never reads it as an answer
     missing = source.isin(codes(row.missing)) | source.isna()
