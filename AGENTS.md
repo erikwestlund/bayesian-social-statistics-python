@@ -51,7 +51,7 @@ Start each notebook and script with `import framework as fw` and `fw.scaffold()`
 
 ## Installed Packages <!-- @framework:regenerate -->
 
-**Dependencies** (in pyproject.toml): framework-py, seaborn, matplotlib, ipykernel, nbformat, nbclient, jupyterlab
+**Dependencies** (in pyproject.toml): framework-py, seaborn, matplotlib, ipykernel, nbformat, nbclient, jupyterlab, cmdstanpy, arviz, statsmodels, ipywidgets
 
 Add packages with `fw.package_add("name")`.
 
@@ -82,3 +82,7 @@ describes the folders and the checks Framework runs.
 ## Project Notes
 
 *Add your project-specific notes, conventions, and documentation here.*
+
+### Series workflow
+
+This project is a port. Every post is built first in R, Stan, and Quarto (`~/Projects/bayesian-social-statistics-r`), then gets a StatsLab section at lab.phpstats.org. Port a post here only after Erik says the R post and its lab are final. A port reproduces the R notebook's numbers up to Monte Carlo error and follows its outline. `bayesian-social-statistics-r/.agents/skills/series-post/SKILL.md` has the details.

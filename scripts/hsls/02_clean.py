@@ -1,6 +1,6 @@
 """Build the analysis file from the HSLS:09 student file.
 
-Run from the project root:  uv run python scripts/02_clean_hsls.py
+Run from the project root:  uv run python scripts/hsls/02_clean.py
 
 inputs/public/raw/hsls_crosswalk.csv drives every step: which NCES variables
 to keep, missing-value codes, recodes, and the new names. The Stata and R
@@ -68,5 +68,9 @@ for row in crosswalk.itertuples():
         column = column.where(clean[row.within] == 1)
     clean[row.name] = column
 
-fw.data_save(clean, "inputs/private/final/hsls_clean.csv")
+# Saved to the file its catalog entry names. framework-py 0.1.0.dev26 rewrites an
+# existing entry when data_save() is given its name (dropping its description),
+# so pass the entry's path until a release with the fix; then this becomes
+# fw.data_save(clean, "inputs.private.final.hsls_clean").
+fw.data_save(clean, str(fw.data_info("inputs.private.final.hsls_clean").path))
 print(f"{len(clean):,} students, {clean.shape[1]} variables")
